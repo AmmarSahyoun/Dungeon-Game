@@ -1,7 +1,7 @@
 package com.company;
 import java.util.ArrayList;
 
-    public class Backpack extends Item {
+  class Backpack extends Item {
         private ArrayList<Item> items = new ArrayList<>() ;
 
         public Backpack(int score) {
@@ -12,11 +12,12 @@ import java.util.ArrayList;
             items.add(newItem);
 
         }
-        public float getScore(){
+        public int getScore(){
             return super.getScore()+getTotalScore();
         }
 
        private int getTotalScore() {
+            int totalScore = 0;
             for (Item item : items) {
                 totalScore += item.getScore();
             }

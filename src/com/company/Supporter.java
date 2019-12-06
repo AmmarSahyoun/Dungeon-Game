@@ -9,7 +9,7 @@ public class Supporter extends Item{
             this.title = title;
         }
         public void showDescription() {
-            System.out.printf("supporter title: %s, weight: %f \n" , title , getScore());
+            System.out.printf(" Earn %d , for %s \n"  , getScore(), title);
         }
     }
 

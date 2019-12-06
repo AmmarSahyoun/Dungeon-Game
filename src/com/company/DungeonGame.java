@@ -3,95 +3,129 @@ import java.util.Scanner;
 
 public class DungeonGame {
 
-    public void mainMenu() {
 
-        System.out.println("  .: Welcome to Doungeon maze :.");
-        System.out.println();
-        boolean continueToRun = true;
-        while (continueToRun) {
+        static char hero = 'Å';
+        static int heroY = 13;
+        static int heroX = 3;
+        static char gold1 = '$';
+        static char gold2 = '$';
+        static char gold3 = '$';
+        static char gold4 = '$';
+        static int gold1Y = 11;
+        static int gold1X = 3;
+        static int gold2Y = 2;
+        static int gold2X = 11;
+        static int gold3Y = 3;
+        static int gold3X = 3;
+        static int gold4Y = 8;
+        static int gold4X = 4;
+        static char caffe = 'K';
+        static int caffeY = 8;
+        static int cafeeX = 12;
+        static char monster = '¤';
+        static int monsterY = 7;
+        static int monsterX = 3;
+        static final int mazeY = 15;
+        static final int mazeX = 15;
+        static char[][] mazeBoard = new char[mazeY][mazeX];
+        static int scoreCounter;
 
-            System.out.println("1. Play a game");
-            System.out.println("2. Read the instructions");
-            System.out.println("3. Exit");
-
-            Scanner scn = new Scanner(System.in);
-            int choice = Integer.parseInt(scn.nextLine());
-            switch (choice) {
-                case 1:
-                    play();
-                    break;
-                case 2:
-                    readInstructions();
-                    break;
-                case 3:
-                    continueToRun = false;
-
+        public static void mainMenu() {
+            while (true) {
+                boardSetup();
+                boardFunction();
             }
         }
-    }
-    private void readInstructions() {
-        System.out.println("use the keys ('W' To move up)('A' To move to left)('S' To move down)('D' to move to right)");
-        System.out.println("Move the hero around the maze to earn the gold and finish the monster");
-        System.out.println("Good luck!");
-    }
-    public static void play(){
-        int pastY=13;
-        int pastX =3;
-        int thisY;
-        int thisX;
 
-        char[][] maze = {
+        public static void boardSetup() {
+            for (int r = 0; r < mazeBoard.length; r++) {
+                //iterate through c
+                for (int c = 0; c < mazeBoard[r].length; c++) {
+                    mazeBoard[c][r] = ' ';
+                    mazeBoard[c][0] = 'W';
+                    mazeBoard[c][14] = 'W';
+                    mazeBoard[0][r] = 'W';
+                    mazeBoard[14][r] = 'W';
+                    mazeBoard[5][1] = 'W';
+                    mazeBoard[5][2] = 'W';
+                    mazeBoard[5][3] = 'W';
+                    mazeBoard[5][4] = 'W';
+                    mazeBoard[5][5] = 'W';
+                    mazeBoard[6][5] = 'W';
+                    mazeBoard[7][5] = 'W';
+                    mazeBoard[8][5] = 'W';
+                    mazeBoard[9][5] = 'W';
+                    mazeBoard[10][5] = 'W';
+                    mazeBoard[10][4] = 'W';
+                    mazeBoard[10][3] = 'W';
+                    mazeBoard[10][2] = 'W';
+                    mazeBoard[8][2] = 'W';
+                    mazeBoard[9][2] = 'W';
+                    mazeBoard[3][10] = 'W';
+                    mazeBoard[4][10] = 'W';
+                    mazeBoard[5][10] = 'W';
+                    mazeBoard[6][10] = 'W';
+                    mazeBoard[7][10] = 'W';
+                    mazeBoard[8][10] = 'W';
+                    mazeBoard[9][10] = 'W';
+                    mazeBoard[10][10] = 'W';
+                    mazeBoard[6][11] = 'W';
+                    mazeBoard[6][12] = 'W';
+                    mazeBoard[6][13] = 'W';
+                    mazeBoard[gold1Y][gold1X] = gold1;
+                    mazeBoard[gold2Y][gold2X] = gold2;
+                    mazeBoard[gold3Y][gold3X] = gold3;
+                    mazeBoard[gold4Y][gold4X] = gold4;
+                    mazeBoard[heroX][heroY] = hero;
+                    mazeBoard[caffeY][cafeeX] = caffe;
+                    mazeBoard[monsterY][monsterX] = monster;
 
-                {'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
-                {'W', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', 'W', ' ', ' ', 'W', 'W', 'W', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', 'W', 'W', 'W', 'W', 'W', 'W', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', ' ', ' ', ' ', ' ', ' ', 'W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'},
-                {'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'},
-        };
-        maze[pastY][pastX] ='Ä';
-        maze[11][3] ='$';
-        maze[8][9] ='$';
-        maze[3][3] ='$';
-        maze[12][8] ='K';
-        maze[5][9] ='¤';
-
-        for (int col = 0; col < maze.length; col++) {
-            for (int row = 0; row < maze[col].length; row++) {
-                System.out.print(maze[col][row]);
+                    System.out.print(mazeBoard[c][r] + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
+            System.out.println("");
         }
-        System.out.println("/up:W/ /down:S/ /left:A/ /right:D/");
-        Scanner scn = new Scanner(System.in);
-        String move = scn.next();
 
-        boolean continueToTrue = true;
-        while (continueToTrue){
-            switch (move) {
-                case "W":   //up
-                    if (maze[pastY-1][pastX] != 'W') { // possible to move
-                        thisY = pastY -1; thisX = pastX;  // update location
-                        System.out.println(maze[pastY][pastX] =' ');   // clear last location
-                        System.out.println(maze[thisY][thisX] ='Ä');    // the hero moved
-                        break;
+        public static void boardFunction() {
+            Scanner scan = new Scanner(System.in);
+            char direction = scan.nextLine().charAt(0);
+
+            switch (direction) {
+                case 'w': // up
+                    if (heroY == 0) {
+                    } else {
+                        heroY = --heroY;
                     }
-
-                    else{ break;}
-                case "S":
-                    pastX += 1;
                     break;
 
+                case 's': //down
+                    if (heroY == 14) {
+                    }  else {
+                        heroY = ++heroY;
+                    }
+                    break;
+
+                case 'a': //left
+                    if (heroX == 0) {
+                    }  else {
+                        heroX = --heroX;
+                    }
+                    break;
+
+                case 'd': //down
+                    if (heroY == 14) {
+                    }  else {
+                        heroX = ++heroX;
+                    }
+                    break;
+                default :
+                    System.out.println("Use letters /up=w/, /left=a/, /down = s/, /right = d/ then ENTER");
             }
 
-        }}}
 
+
+
+
+        }
+    }

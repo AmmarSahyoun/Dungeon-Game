@@ -7,7 +7,7 @@ package com.company;
             this.score = score;
         }
 
-        public float getScore(){
+        public int getScore(){
             return score;
         }
         public abstract void showDescription();
