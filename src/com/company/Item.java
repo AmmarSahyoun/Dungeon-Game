@@ -1,14 +1,14 @@
 package com.company;
 
-    public abstract class Item{
-        private int score ;
+    public abstract class Item {
+        private int name;
 
         public Item(int score) {
-            this.score = score;
+            this.name = name;
         }
 
-        public int getScore(){
-            return score;
+        public int getScore() {
+            return name;
         }
-        public abstract void showDescription();
+
     }

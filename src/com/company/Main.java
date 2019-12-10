@@ -5,13 +5,13 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Supporter gold = new Supporter(150, "Gold");
+        cupOfCoffee gold = new cupOfCoffee(150, "Gold");
    //     gold.showDescription();
 
-        Supporter caffe = new Supporter(500, "Coffee");
+        cupOfCoffee caffe = new cupOfCoffee(500, "Coffee");
   //      caffe.showDescription();
 
-        Supporter monster = new Supporter(750,"the monster");
+        cupOfCoffee monster = new cupOfCoffee(750,"the monster");
   //      monster.showDescription();
 
    //     DungeonGame dungeonGame = new DungeonGame();
@@ -46,6 +46,7 @@ public class Main {
     public static void readInstructions() {
         System.out.println("use the keys ('W' To move up)('A' To move to left)('S' To move down)('D' to move to right)");
         System.out.println("Move the hero around the maze to earn the gold and finish the monster");
+        System.out.println("REMEMBER to drink coffee before you beat the monster!");
         System.out.println("Good luck!");
         System.out.println("  \n");
 
