@@ -1,14 +1,16 @@
 package com.company;
 
-public class Gold extends Item{
-    private String name ;
+public class Gold extends Item {
 
+    public int goldY;
+    public int goldX;
 
-    public Gold(int score, String name) {
-        super(score);
-        this.name = name;
+    public Gold(int newY, int newX) {
+
+        super("Gold", 200);
+        goldY = newY;
+        goldX = newX;
+
     }
-
-
 
 }

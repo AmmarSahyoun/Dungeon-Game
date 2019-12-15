@@ -1,29 +1,23 @@
 package com.company;
+
 import java.util.ArrayList;
 
-  class Backpack extends Item {
-        private ArrayList<Item> items = new ArrayList<>() ;
+public class BackPack extends Item {
 
-      public Backpack(int score) {
-          super(score);
-      }
+    private ArrayList<Item> items = new ArrayList<>();
 
+    public BackPack() {
+        super("BackPack", 0);
+    }
 
-      public void addItem(Item newItem){
-            items.add(newItem);
+    public void addItem(Item item) {
 
-        }
-        public int getScore(){
-            return super.getScore()+getTotalScore();
-        }
-
-       private int getTotalScore() {
-            int totalScore = 0;
-            for (Item item : items) {
-                totalScore += item.getScore();
-            }
-            return totalScore;
-        }
-
+        items.add(item);
+        setEnergy(getEnergy() + item.getEnergy());
+    }
 
 }
+
+
+
+
