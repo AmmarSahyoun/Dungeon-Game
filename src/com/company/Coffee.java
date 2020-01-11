@@ -1,10 +1,13 @@
 package com.company;
 
-public class Coffee extends Item {
+public class Coffee extends MapItem {
 
-    public Coffee() {
-
-        super("coffee", 700);
+    public Coffee(int itemY, int itemX, int value) {
+        super("Coffee", itemY, itemX, value);
     }
 
+    @Override
+    public char GetSymbol() {
+        return 'K';
+    }
 }

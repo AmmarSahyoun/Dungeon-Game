@@ -1,16 +1,14 @@
 package com.company;
 
-public class Gold extends Item {
+public class Gold extends MapItem {
 
-    public int goldY;
-    public int goldX;
+    public Gold(int itemY, int itemX, int value) {
+        super("Gold", itemY, itemX, value);
+    }
 
-    public Gold(int newY, int newX) {
-
-        super("Gold", 200);
-        goldY = newY;
-        goldX = newX;
-
+    @Override
+    public char GetSymbol() {
+        return '$';
     }
 
 }

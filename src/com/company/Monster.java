@@ -2,8 +2,12 @@ package com.company;
 
 public class Monster extends Creature {
 
-    public Monster() {
-        super("Monster", 500);
+    public Monster(int Y, int X) {
+        super("Monster", 500, Y, X);
+    }
 
+    @Override
+    public char GetSymbol() {
+        return '¤';
     }
 }
